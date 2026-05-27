@@ -67,6 +67,10 @@ body { font-family: 'Noto Sans TC', sans-serif; background: #faf7f2; color: #3d2
 .shinkansen-row { display: flex; align-items: center; gap: 8px; }
 .shinkansen-time { font-weight: 500; font-size: 13px; color: #1a3060; }
 .shinkansen-sep { color: #7aa0cc; font-size: 11px; }
+.route-step { display: flex; align-items: flex-start; gap: 8px; padding: 4px 0; border-bottom: 0.5px solid #e0eeff; }
+.route-step:last-child { border-bottom: none; }
+.route-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+.route-text { font-size: 12px; color: #2a4a7a; line-height: 1.5; }
 .hotel-strip { background: #fdf8f0; border-top: 0.5px solid #ecdcc0; padding: 0.75rem 1.25rem; display: flex; align-items: center; gap: 8px; }
 .hotel-label { font-size: 11px; color: #9b7e54; white-space: nowrap; }
 .hotel-link { font-size: 13px; font-weight: 500; color: #8b6030; text-decoration: none; margin-left: auto; text-align: right; }
@@ -162,9 +166,7 @@ body { font-family: 'Noto Sans TC', sans-serif; background: #faf7f2; color: #3d2
             <div class="item-title">熊本城 Kumamoto Castle</div>
             <div class="item-sub">從飯店搭計程車前往・開放 9:00–17:00（最終入場 16:30）</div>
             <span class="item-type type-spot">景點</span>
-            <div class="info-box blue">
-              <strong>入場料</strong>　高校生以上 ¥800・小中學生 ¥300・未就學兒童 免費
-            </div>
+            <div class="info-box blue"><strong>入場料</strong>　高校生以上 ¥800・小中學生 ¥300・未就學兒童 免費</div>
           </div>
         </div>
         <div class="timeline-item">
@@ -304,15 +306,30 @@ body { font-family: 'Noto Sans TC', sans-serif; background: #faf7f2; color: #3d2
       </div>
       <div class="timeline">
         <div class="timeline-item">
-          <div class="time-label">08:39</div>
+          <div class="time-label">08:30</div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <div class="item-title">新幹線 熊本駅 → 博多（待訂）</div>
-            <div class="info-box blue">
-              <div class="shinkansen-row"><span class="shinkansen-time">08:39</span><span class="shinkansen-sep">→</span><span class="shinkansen-time">09:21</span><span style="font-size:11px;color:#5570a0;margin-left:4px;">Sakura 744（42分）</span></div>
-              <div style="margin-top:3px;font-size:11px;color:#5570a0;">或 09:16 → 09:51 Mizuho 604（35分）· 指定座 ¥5,640／人</div>
+            <div class="item-title">熊本駅 出發 → 太宰府</div>
+            <div class="item-sub">行李寄放飯店後出發</div>
+            <span class="item-type type-transport">新幹線＋地鐵＋西鐵</span>
+            <div class="info-box blue" style="margin-top:6px;">
+              <div class="route-step">
+                <span class="route-icon">🚄</span>
+                <span class="route-text"><strong>熊本駅 → 博多駅</strong>　九州新幹線，約 35–45 分・指定座 ¥5,640／人（待訂）</span>
+              </div>
+              <div class="route-step">
+                <span class="route-icon">🚇</span>
+                <span class="route-text"><strong>博多駅 → 西鐵福岡（天神）站</strong>　地鐵空港線，約 6 分・¥210</span>
+              </div>
+              <div class="route-step">
+                <span class="route-icon">🚃</span>
+                <span class="route-text"><strong>西鐵福岡（天神）站 → 西鐵二日市站</strong>　西鐵天神大牟田線特急，約 15 分</span>
+              </div>
+              <div class="route-step">
+                <span class="route-icon">🚃</span>
+                <span class="route-text"><strong>西鐵二日市站 → 太宰府站</strong>　西鐵太宰府線，約 5 分・天神→太宰府全程約 ¥430</span>
+              </div>
             </div>
-            <span class="item-type type-transport">新幹線</span>
           </div>
         </div>
         <div class="timeline-item">
@@ -320,7 +337,7 @@ body { font-family: 'Noto Sans TC', sans-serif; background: #faf7f2; color: #3d2
           <div class="timeline-dot"></div>
           <div class="timeline-content">
             <div class="item-title">太宰府天滿宮 Dazaifu Tenmangu</div>
-            <div class="item-sub">博多駅搭西鐵特急前往，約35分鐘 · 參道自由逛、嚐梅ヶ枝餅</div>
+            <div class="item-sub">參道自由逛、嚐梅ヶ枝餅</div>
             <span class="item-type type-spot">景點</span>
           </div>
         </div>
