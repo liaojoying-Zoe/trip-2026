@@ -22,13 +22,22 @@ body { font-family: 'Noto Sans TC', sans-serif; background: #faf7f2; color: #3d2
 .travelers-section { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.5rem; }
 .traveler-card { background: #fff; border-radius: 14px; border: 0.5px solid #e0d5c0; padding: 1rem; }
 .traveler-label { font-size: 10px; color: #9b7e54; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
-.traveler-names { font-size: 15px; font-weight: 500; color: #3d2b1f; margin-bottom: 4px; line-height: 1.4; }
-.traveler-airline { font-size: 12px; color: #7a6040; }
-.flight-row { display: flex; align-items: center; gap: 6px; margin-top: 5px; }
-.flight-city { font-size: 13px; color: #5c4a35; font-weight: 500; }
-.flight-arrow { font-size: 10px; color: #c49e64; }
-.flight-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 8px; }
-.flight-number { display: inline-block; background: #fdf3e0; border: 0.5px solid #e8d0a0; color: #7a5c30; font-size: 11px; font-weight: 500; padding: 2px 9px; border-radius: 4px; }
+.traveler-names { font-size: 15px; font-weight: 500; color: #3d2b1f; margin-bottom: 4px; }
+.airline-name { font-size: 11px; color: #9b7e54; margin-bottom: 4px; }
+.flight-block { border-top: 0.5px solid #f0e8d8; padding-top: 10px; margin-top: 10px; }
+.flight-badge-row { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+.flight-badge { display: inline-block; background: #fdf3e0; border: 0.5px solid #e8d0a0; color: #7a5c30; font-size: 11px; font-weight: 500; padding: 2px 9px; border-radius: 4px; }
+.flight-dir { font-size: 10px; color: #9b8060; }
+.flight-route { display: flex; align-items: center; gap: 8px; }
+.flight-endpoint { text-align: center; min-width: 44px; }
+.flight-code { font-size: 18px; font-weight: 600; color: #3d2b1f; line-height: 1.1; }
+.flight-time { font-size: 13px; font-weight: 500; color: #5c4a35; margin-top: 2px; }
+.flight-city-name { font-size: 10px; color: #9b8060; margin-top: 1px; }
+.flight-middle { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.flight-line-wrap { width: 100%; display: flex; align-items: center; gap: 4px; }
+.flight-line { flex: 1; height: 0.5px; background: #c49e64; }
+.flight-arrow { font-size: 9px; color: #c49e64; line-height: 1; }
+.flight-duration { font-size: 10px; color: #9b8060; }
 .days-container { display: flex; flex-direction: column; gap: 1rem; }
 .day-card { background: #fff; border-radius: 16px; border: 0.5px solid #e0d5c0; overflow: hidden; }
 .day-header { padding: 1rem 1.25rem; display: flex; align-items: center; gap: 8px; border-bottom: 0.5px solid #f0e8d8; flex-wrap: wrap; }
@@ -105,16 +114,44 @@ body { font-family: 'Noto Sans TC', sans-serif; background: #faf7f2; color: #3d2
     <div class="traveler-card">
       <div class="traveler-label">台北出發</div>
       <div class="traveler-names">Zoe・芸・Irene</div>
-      <div class="traveler-airline">星宇航空 JX</div>
-      <div class="flight-row"><span class="flight-city">TPE</span><span class="flight-arrow">→</span><span class="flight-city">KMJ</span></div>
-      <div class="flight-tags"><span class="flight-number">去程 JX846</span><span class="flight-number">回程 JX847</span></div>
+      <div class="airline-name">星宇航空 JX</div>
+      <div class="flight-block">
+        <div class="flight-badge-row"><span class="flight-badge">JX846</span><span class="flight-dir">去程・6/13</span></div>
+        <div class="flight-route">
+          <div class="flight-endpoint"><div class="flight-code">TPE</div><div class="flight-time">07:30</div><div class="flight-city-name">台北</div></div>
+          <div class="flight-middle"><div class="flight-line-wrap"><div class="flight-line"></div><div class="flight-arrow">▶</div></div><div class="flight-duration">約 2h 15m</div></div>
+          <div class="flight-endpoint"><div class="flight-code">KMJ</div><div class="flight-time">10:45</div><div class="flight-city-name">熊本</div></div>
+        </div>
+      </div>
+      <div class="flight-block">
+        <div class="flight-badge-row"><span class="flight-badge">JX847</span><span class="flight-dir">回程・6/17</span></div>
+        <div class="flight-route">
+          <div class="flight-endpoint"><div class="flight-code">KMJ</div><div class="flight-time">11:55</div><div class="flight-city-name">熊本</div></div>
+          <div class="flight-middle"><div class="flight-line-wrap"><div class="flight-line"></div><div class="flight-arrow">▶</div></div><div class="flight-duration">約 1h 25m</div></div>
+          <div class="flight-endpoint"><div class="flight-code">TPE</div><div class="flight-time">13:20</div><div class="flight-city-name">台北</div></div>
+        </div>
+      </div>
     </div>
     <div class="traveler-card">
       <div class="traveler-label">高雄出發</div>
       <div class="traveler-names">小可</div>
-      <div class="traveler-airline">中華航空 CI</div>
-      <div class="flight-row"><span class="flight-city">KHH</span><span class="flight-arrow">→</span><span class="flight-city">KMJ</span></div>
-      <div class="flight-tags"><span class="flight-number">去程 CI198</span><span class="flight-number">回程 CI199</span></div>
+      <div class="airline-name">中華航空 CI</div>
+      <div class="flight-block">
+        <div class="flight-badge-row"><span class="flight-badge">CI198</span><span class="flight-dir">去程・6/13</span></div>
+        <div class="flight-route">
+          <div class="flight-endpoint"><div class="flight-code">KHH</div><div class="flight-time">07:10</div><div class="flight-city-name">高雄</div></div>
+          <div class="flight-middle"><div class="flight-line-wrap"><div class="flight-line"></div><div class="flight-arrow">▶</div></div><div class="flight-duration">約 2h 25m</div></div>
+          <div class="flight-endpoint"><div class="flight-code">KMJ</div><div class="flight-time">10:35</div><div class="flight-city-name">熊本</div></div>
+        </div>
+      </div>
+      <div class="flight-block">
+        <div class="flight-badge-row"><span class="flight-badge">CI199</span><span class="flight-dir">回程・6/17</span></div>
+        <div class="flight-route">
+          <div class="flight-endpoint"><div class="flight-code">KMJ</div><div class="flight-time">11:50</div><div class="flight-city-name">熊本</div></div>
+          <div class="flight-middle"><div class="flight-line-wrap"><div class="flight-line"></div><div class="flight-arrow">▶</div></div><div class="flight-duration">約 2h 40m</div></div>
+          <div class="flight-endpoint"><div class="flight-code">KHH</div><div class="flight-time">13:30</div><div class="flight-city-name">高雄</div></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -519,7 +556,7 @@ body { font-family: 'Noto Sans TC', sans-serif; background: #faf7f2; color: #3d2
           <div class="timeline-content">
             <div class="item-title">One Station Hotel 退房・立即出發</div>
             <span class="item-type type-transport">check-out</span>
-            <div class="info-box amber">⚠️ 兩班飛機均約 11:55 起飛，退房後須立即搭巴士，勿在駅周邊耽擱</div>
+            <div class="info-box amber">⚠️ 兩班飛機均約 11:50–11:55 起飛，退房後須立即搭巴士，勿在駅周邊耽擱</div>
           </div>
         </div>
         <div class="timeline-item">
@@ -538,17 +575,17 @@ body { font-family: 'Noto Sans TC', sans-serif; background: #faf7f2; color: #3d2
           <div class="time-label">11:55</div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <div class="item-title">Zoe・芸・Irene：JX847 KMJ → TPE</div>
-            <div class="item-sub">起飛 11:55 · 09:55 前完成報到</div>
+            <div class="item-title">Zoe・芸・Irene：JX847 KMJ 11:55 → TPE 13:20</div>
+            <div class="item-sub">09:55 前完成報到</div>
             <span class="item-type type-transport">回程航班</span>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="time-label">11:55</div>
+          <div class="time-label">11:50</div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <div class="item-title">小可：CI199 KMJ → KHH</div>
-            <div class="item-sub">起飛 11:55 · 09:55 前完成報到</div>
+            <div class="item-title">小可：CI199 KMJ 11:50 → KHH 13:30</div>
+            <div class="item-sub">09:50 前完成報到</div>
             <span class="item-type type-transport">回程航班</span>
           </div>
         </div>
