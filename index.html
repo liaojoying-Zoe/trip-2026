@@ -95,6 +95,14 @@ body { font-family: 'Noto Sans TC', sans-serif; background: #faf7f2; color: #3d2
 .hotel-card-address { font-size: 12px; color: #9b8060; margin-top: 4px; line-height: 1.55; }
 .map-link { display: inline-block; margin-top: 8px; font-size: 11px; color: #c49e64; text-decoration: none; border: 0.5px solid #ddc090; padding: 3px 10px; border-radius: 4px; }
 .trip-footer { text-align: center; padding: 2rem 1.5rem 1rem; font-size: 11px; color: #c4a87a; letter-spacing: 1px; }
+.plan-tabs { display: flex; gap: 0; border-bottom: 0.5px solid #e0d5c0; }
+.plan-tab { flex: 1; padding: 0.6rem 0.75rem; font-size: 12px; font-weight: 500; color: #9b7e54; background: #faf7f2; cursor: pointer; border: none; border-bottom: 2px solid transparent; transition: all 0.2s; text-align: center; }
+.plan-tab.active { color: #3d2b1f; background: #fff; border-bottom: 2px solid #c49e64; }
+.plan-body { display: none; }
+.plan-body.active { display: block; }
+.plan-label-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 4px; font-weight: 500; margin-bottom: 4px; }
+.plan-label-a { background: #fde8d0; color: #8b4513; }
+.plan-label-b { background: #e8f0ff; color: #1a3a8a; }
 </style>
 </head>
 <body>
@@ -337,108 +345,215 @@ body { font-family: 'Noto Sans TC', sans-serif; background: #faf7f2; color: #3d2
     <div class="day-card">
       <div class="day-header">
         <div class="day-badge">Day 3</div>
-        <div class="day-title">太宰府・移動至福岡</div>
+        <div class="day-title">移動至福岡</div>
         <span class="city-tag city-fukuoka">福岡</span>
         <div class="day-date">6/15 一</div>
       </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="time-label">08:39</div>
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="item-title">熊本駅 出發 → 博多</div>
-            <div class="item-sub">行李寄放飯店後出發</div>
-            <span class="item-type type-transport">新幹線＋地鐵＋西鐵</span>
-            <div class="info-box blue" style="margin-top:6px;">
-              <div class="route-step">
-                <span class="route-icon">🚄</span>
-                <span class="route-text"><strong>熊本駅 08:39 → 博多駅 09:21</strong>　Sakura 744（42分）· 指定座 ¥5,640／人（待訂）</span>
-              </div>
-              <div class="route-step">
-                <span class="route-icon">🚇</span>
-                <span class="route-text"><strong>博多駅 → 西鐵福岡（天神）站</strong>　地鐵空港線，約 6 分・¥210</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="time-label">上午</div>
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="item-title">西鐵格蘭酒店 check-in・放行李</div>
-            <div class="item-sub">〒810-0041 福岡市中央区大名 2-6-60・天神站步行約 5 分</div>
-            <span class="item-type type-transport">放行李</span>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="time-label">10:00</div>
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="item-title">Full Full パンとワイン・明太子法棍</div>
-            <div class="item-sub">福岡市中央区天神 3-3-5 FULL FULL BLD 1F・天神站步行約 5–10 分<br>營業 10:00–20:00（週二公休）· 不用排隊，限購 5 條／人</div>
-            <span class="item-type type-food">麵包店</span>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="time-label">上午</div>
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="item-title">太宰府天滿宮 Dazaifu Tenmangu</div>
-            <div class="item-sub">參道自由逛、嚐梅ヶ枝餅</div>
-            <span class="item-type type-spot">景點</span>
-            <div class="info-box blue" style="margin-top:6px;">
-              <div class="route-step">
-                <span class="route-icon">🚃</span>
-                <span class="route-text"><strong>西鐵福岡（天神）站 → 西鐵二日市站</strong>　西鐵天神大牟田線特急，約 15 分</span>
-              </div>
-              <div class="route-step">
-                <span class="route-icon">🚃</span>
-                <span class="route-text"><strong>西鐵二日市站 → 太宰府站</strong>　西鐵太宰府線，約 5 分・天神→太宰府全程約 ¥430</span>
+      <div class="plan-tabs">
+        <button class="plan-tab active" onclick="switchPlan('day3','a')">方案一・太宰府</button>
+        <button class="plan-tab" onclick="switchPlan('day3','b')">方案二・柳川遊船</button>
+      </div>
+
+      <!-- 方案一：太宰府 -->
+      <div class="plan-body active" id="day3-a">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time-label">08:39</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">熊本駅 出發 → 博多</div>
+              <div class="item-sub">行李寄放飯店後出發</div>
+              <span class="item-type type-transport">新幹線＋地鐵＋西鐵</span>
+              <div class="info-box blue" style="margin-top:6px;">
+                <div class="route-step">
+                  <span class="route-icon">🚄</span>
+                  <span class="route-text"><strong>熊本駅 08:39 → 博多駅 09:21</strong>　Sakura 744（42分）· 指定座 ¥5,640／人（待訂）</span>
+                </div>
+                <div class="route-step">
+                  <span class="route-icon">🚇</span>
+                  <span class="route-text"><strong>博多駅 → 西鐵福岡（天神）站</strong>　地鐵空港線，約 6 分・¥210</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="time-label">午餐</div>
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="item-title">午餐（待定）</div>
-            <span class="item-type type-food">餐廳</span>
+          <div class="timeline-item">
+            <div class="time-label">上午</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">西鐵格蘭酒店 check-in・放行李</div>
+              <div class="item-sub">〒810-0041 福岡市中央区大名 2-6-60・天神站步行約 5 分</div>
+              <span class="item-type type-transport">放行李</span>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="time-label">下午</div>
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="item-title">福岡市區行程（待定）</div>
-            <span class="item-type type-spot">景點</span>
+          <div class="timeline-item">
+            <div class="time-label">10:00</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">Full Full パンとワイン・明太子法棍</div>
+              <div class="item-sub">福岡市中央区天神 3-3-5 FULL FULL BLD 1F・天神站步行約 5–10 分<br>營業 10:00–20:00（週二公休）· 不用排隊，限購 5 條／人</div>
+              <span class="item-type type-food">麵包店</span>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="time-label">晚餐</div>
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="item-title">晚餐（待定）</div>
-            <span class="item-type type-food">餐廳</span>
+          <div class="timeline-item">
+            <div class="time-label">上午</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">太宰府天滿宮 Dazaifu Tenmangu</div>
+              <div class="item-sub">參道自由逛、嚐梅ヶ枝餅</div>
+              <span class="item-type type-spot">景點</span>
+              <div class="info-box blue" style="margin-top:6px;">
+                <div class="route-step">
+                  <span class="route-icon">🚃</span>
+                  <span class="route-text"><strong>西鐵福岡（天神）站 → 西鐵二日市站</strong>　西鐵天神大牟田線特急，約 15 分</span>
+                </div>
+                <div class="route-step">
+                  <span class="route-icon">🚃</span>
+                  <span class="route-text"><strong>西鐵二日市站 → 太宰府站</strong>　西鐵太宰府線，約 5 分・天神→太宰府全程約 ¥430</span>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="time-label">晚上</div>
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="item-title">福岡市區逛街</div>
-            <span class="item-type type-shop">購物</span>
+          <div class="timeline-item">
+            <div class="time-label">午餐</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">午餐（待定）</div>
+              <span class="item-type type-food">餐廳</span>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="time-label">21:30</div>
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="item-title">返回飯店 check-in</div>
-            <span class="item-type type-transport">check-in</span>
+          <div class="timeline-item">
+            <div class="time-label">下午</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">福岡市區行程（待定）</div>
+              <span class="item-type type-spot">景點</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time-label">晚餐</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">晚餐（待定）</div>
+              <span class="item-type type-food">餐廳</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time-label">晚上</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">福岡市區逛街</div>
+              <span class="item-type type-shop">購物</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time-label">21:30</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">返回飯店 check-in</div>
+              <span class="item-type type-transport">check-in</span>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- 方案二：柳川 -->
+      <div class="plan-body" id="day3-b">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time-label">08:45</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">熊本駅 出發 → 大牟田</div>
+              <div class="item-sub">行李寄放飯店後出發</div>
+              <span class="item-type type-transport">JR 鹿兒島本線</span>
+              <div class="info-box blue" style="margin-top:6px;">
+                <div class="route-step">
+                  <span class="route-icon">🚃</span>
+                  <span class="route-text"><strong>熊本駅 08:45 → 大牟田駅</strong>　JR 鹿兒島本線</span>
+                </div>
+                <div class="route-step">
+                  <span class="route-icon">🚃</span>
+                  <span class="route-text"><strong>大牟田駅（西鐵）09:52 → 西鐵柳川駅</strong>　西鐵天神大牟田線</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time-label">上午</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">柳川遊船 Yanagawa River Cruise</div>
+              <div class="item-sub">乘坐どんこ舟沿護城河漫遊，船夫撐篙・沿途柳蔭水鄉風情</div>
+              <span class="item-type type-spot">景點</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time-label">午餐</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">午餐（待定）</div>
+              <div class="item-sub">可嚐柳川名物蒸籠鰻魚飯（せいろ蒸し）</div>
+              <span class="item-type type-food">餐廳</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time-label">下午</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">移動至福岡天神</div>
+              <div class="info-box blue" style="margin-top:6px;">
+                <div class="route-step">
+                  <span class="route-icon">🚃</span>
+                  <span class="route-text"><strong>西鐵柳川駅 → 西鐵福岡（天神）站</strong>　西鐵天神大牟田線特急，約 40 分</span>
+                </div>
+              </div>
+              <span class="item-type type-transport">西鐵</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time-label">下午</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">西鐵格蘭酒店 check-in・放行李</div>
+              <div class="item-sub">〒810-0041 福岡市中央区大名 2-6-60・天神站步行約 5 分</div>
+              <span class="item-type type-transport">放行李</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time-label">下午</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">福岡市區行程（待定）</div>
+              <span class="item-type type-spot">景點</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time-label">晚餐</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">晚餐（待定）</div>
+              <span class="item-type type-food">餐廳</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time-label">晚上</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">福岡市區逛街</div>
+              <span class="item-type type-shop">購物</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time-label">21:30</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="item-title">返回飯店 check-in</div>
+              <span class="item-type type-transport">check-in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="hotel-strip">
         <span class="hotel-label">住宿</span>
         <span class="hotel-name-plain">西鐵格蘭酒店 Nishitetsu Grand Hotel</span>
@@ -623,6 +738,17 @@ body { font-family: 'Noto Sans TC', sans-serif; background: #faf7f2; color: #3d2
 </div>
 
 <div class="trip-footer">熊本・福岡 2026 · Zoe・芸・Irene・小可</div>
+
+<script>
+function switchPlan(day, plan) {
+  const tabs = document.querySelectorAll('#' + day + '-a, #' + day + '-b');
+  tabs.forEach(el => el.classList.remove('active'));
+  document.getElementById(day + '-' + plan).classList.add('active');
+  const allTabs = document.querySelectorAll('.plan-tab');
+  allTabs.forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
 
 </body>
 </html>
